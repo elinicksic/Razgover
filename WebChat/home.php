@@ -8,7 +8,7 @@
     </head>
     <body>
         <div id="main">
-            <h1 style="background-color: #6495ed;color: white;">Group Name</h1> <!-- Group name -->
+            <h1 style="background-color: #6495ed;color: white;" id="gname">Group Name</h1> <!-- Group name -->
             <div id="output">
         	    <!--Code...-->
             </div>
