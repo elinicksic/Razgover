@@ -23,7 +23,7 @@
 		<label><b>Password</b></label>
 		<input type="password" name="pass" placeholder="password"><br><br>
 		<label><b>Email</b></label>
-		<input type="text" name="email" placeholder="example@example.com"><br><br>
+		<input type="email" name="email" placeholder="example@example.com"><br><br>
 		<button style="background-color: #6495ed;color: white;" type="submit"><b>Sign Up</b></button>
 		</form>
 	</div>
