@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title></title>
+        <title>Chattify - Login</title>
     </head>
     <body>
         <div id="main">
@@ -17,11 +17,11 @@
 		        <form action="signup.php" method = "post">
 		            <h2>Sign Up</h2>
 		            <label><b>Username</b></label>
-		            <input type="text" name="uname" placeholder="John Doe"><br><br>
+		            <input type="text" name="uname" placeholder="Username"><br><br>
 		            <label><b>Password</b></label>
-            		<input type="password" name="pass" placeholder="password"><br><br>
+            		<input type="password" name="pass" placeholder="Password"><br><br>
             		<label><b>Email</b></label>
-            		<input type="email" name="email" placeholder="example@example.com"><br><br>
+            		<input type="email" name="email" placeholder="example@domain.com"><br><br>
             		<button style="background-color: #6495ed;color: white;" type="submit"><b>Sign Up</b></button>
 		        </form>
 	        </div>

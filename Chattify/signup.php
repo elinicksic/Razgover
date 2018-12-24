@@ -6,8 +6,7 @@ $email=$_POST["email"];
 $pass=password_hash($_POST["pass"], PASSWORD_BCRYPT);
 
 
-$sql="insert into signup(username,email,password)
-values ('$uname', '$email', '$pass')";
+$sql="INSERT INTO signup(username,email,password) VALUES ('$uname', '$email', '$pass')";
 $result=$conn->query($sql);
 
 

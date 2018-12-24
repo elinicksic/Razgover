@@ -1,4 +1,18 @@
 <!DOCTYPE html>
+<?php
+include dbh.php;
+if (!isset($_COOKIE['uid'])) {
+    header("Location:error.php");
+}
+$sql = "SELECT * FROM signup WHERE uid='$_COOKIE['uid']'";
+$result=$conn->query($sql);
+$row=mysqli_fetch_assoc($result);
+
+$message  = "Welcome " + $row['username'];
+//$ne = $_REQUEST["gname"];
+//$output = $existing;
+echo $message;
+?>
 <html>
     <head>
     	<title></title>
@@ -8,7 +22,7 @@
     </head>
     <body>
         <div id="main">
-            <h1 style="background-color: #6495ed;color: white;" id="gname">Group Name</h1> <!-- Group name -->
+            <h1 style="background-color: #6495ed;color: white;" id="gname"></h1>
             <div id="output">
         	    <!--Code...-->
             </div>
