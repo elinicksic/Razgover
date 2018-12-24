@@ -15,14 +15,16 @@ echo $message;
 ?>
 <html>
     <head>
-    	<title></title>
+    	<title>Chattify - Home</title>
     	<style>
-    		
+    		body {
+                font-family: Arial;
+            }
     	</style>
     </head>
     <body>
         <div id="main">
-            <h1 style="background-color: #6495ed;color: white;" id="gname"></h1>
+            <h1 style="background-color: #6495ed;color: white;" id="gname"></h1> <!-- Group name -->
             <div id="output">
         	    <!--Code...-->
             </div>

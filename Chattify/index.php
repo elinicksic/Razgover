@@ -9,9 +9,9 @@
 		        <h2>Login</h2>
 		        <form action="login.php" method="post">
 		            <label><b>Username</b><label>
-		            <input type="text" name="uname" placeholder="John Doe"><br><br>
+		            <input type="text" name="uname" placeholder="Username"><br><br>
 		            <label><b>Password</b><label>
-		            <input type="password" name="pass" placeholder="password"><br><br>
+		            <input type="password" name="pass" placeholder="Password"><br><br>
 		            <button style="background-color: #6495ed;color: white;" type="submit"><b>Login</b></button>
 		        </form>
 		        <form action="signup.php" method = "post">

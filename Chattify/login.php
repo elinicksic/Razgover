@@ -17,6 +17,7 @@ if(($uname = '' or $uname = str_repeat(' ', sizeof($uname))) or ($pass = '' or $
 
 if(!password_verify($pass, $row["password"])){
 	header("Location:error.php");
+
 } else {
 	$_SESSION["name"]=$_POST["uname"];
 	header("Location:home.php");
