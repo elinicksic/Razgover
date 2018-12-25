@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <?php
-include dbh.php;
+include "dbh.php";
 if (!isset($_COOKIE['uid'])) {
     header("Location:error.php");
 }
-$sql = "SELECT * FROM signup WHERE uid='$_COOKIE['uid']'";
-$result=$conn->query($sql);
+$sql="SELECT * FROM signup WHERE uid='$_COOKIE[uid]'";
+$result=mysqli_query($conn, $sql);
 $row=mysqli_fetch_assoc($result);
-
-$message  = "Welcome " + $row['username'];
-//$ne = $_REQUEST["gname"];
-//$output = $existing;
-echo $message;
+echo "<h1> Welcome $row[username] </h1>";
 ?>
+
+
 <html>
     <head>
     	<title>Chattify - Home</title>
@@ -26,7 +24,21 @@ echo $message;
         <div id="main">
             <h1 style="background-color: #6495ed;color: white;" id="gname"></h1> <!-- Group name -->
             <div id="output">
-        	    <!--Code...-->
+        	    <?php
+
+                    $sql = "SELECT * FROM posts";
+                    $result = mysqli_query($conn, $sql);
+
+
+
+                    while($row = mysqli_fetch_assoc($result)){
+                        $sql2 = "SELECT username FROM signup WHERE uid='$row[uid]'";
+                        $result2 = mysqli_query($conn, $sql2);
+                        $name =  mysqli_fetch_assoc($result2);
+                        echo "<p><b>$name[username]</b> <br /> $row[msg]</p>";
+                    }   
+                    
+                ?>
             </div>
             <form method="post" action="send.php">
                 <textarea name="msg" placeholder="Type in your message..." class="form-control"></textarea><br />

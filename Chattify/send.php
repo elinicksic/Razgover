@@ -1,10 +1,14 @@
 <?php 
 include "dbh.php";
-$sql="SELECT * FROM posts WHERE uid='$uid' AND date='$date' AND msg='$msg'";
+if (!isset($_COOKIE["uid"])) {
+    header("Location:error.php");
+}
 
-$uid=setcookie("uid")
-$date=mysqli_real_escape_string($conn, $_POST["uname"]);
+
+$uid=$_COOKIE["uid"];
 $msg=mysqli_real_escape_string($conn, $_POST["msg"]);
+$sql="INSERT INTO posts(uid, msg) VALUES ('$uid', '$msg')";
+$result = mysqli_query($conn, $sql);
 
-
+header("Location:home.php");
 ?>
