@@ -54,7 +54,7 @@ while(1) {
                 ?>
             </div>
             <form method="post" action="send.php">
-                <textarea name="msg" placeholder="Type in your message..." class="form-control"></textarea><br />
+                <input type=text placeholder="Type in your message..." class="form-control" width=100%><br>
                 <input type="submit" value="Send" />
             </form>
             <br />
