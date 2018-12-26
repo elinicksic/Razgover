@@ -1,13 +1,17 @@
 <?php
 
 include "dbh.php";
-$uname=$_POST["uname"];
-$email=$_POST["email"];
-$pass=password_hash($_POST["pass"], PASSWORD_BCRYPT);
-
-
-$sql="INSERT INTO signup(username,email,password) VALUES ('$uname', '$email', '$pass')";
+$uname==mysqli_real_escape_string($_POST["uname"]);
+$email=mysqli_real_escape_string($_POST["email"]);
+$pass==mysqli_real_escape_string(password_hash($_POST["pass"], PASSWORD_BCRYPT));
+$sql="SELECT * FROM signup WHERE email='$email' OR username='$uname'";
 $result=$conn->query($sql);
+$row=mysqli_fetch_assoc($result);
 
-header("Location:index.php");
+if(!row){
+	header("Location:verify.php");
+} else {
+	header("Location:error.php");
+}
+
 ?>
