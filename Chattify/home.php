@@ -46,7 +46,8 @@ echo "<h1> Welcome $row[username] </h1>";
             </form>
             <br />
             <form action="logout.php">
-                <input style="width: 100%;background-color: #6495ed;color: white;font-size: 20px;" type="submit," name="Logout">
+                <input style="width: 100%;background-color: #6495ed;color: white;font-size: 20px;" type="submit" value=
+                "Logout" />
             </form>
         </div> 
     </body>
