@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <?php
 include "dbh.php";
-if (!isset($_COOKIE['uid'])) {
-    header("Location:error.php");
-}
-$sql="SELECT * FROM signup WHERE uid='$_COOKIE[uid]'";
+session_start();
+$sql="SELECT * FROM signup WHERE uid='$_SESSION[uid]'";
 $result=mysqli_query($conn, $sql);
 $row=mysqli_fetch_assoc($result);
 echo "<h1> Welcome $row[username] </h1>";
@@ -13,17 +11,6 @@ $msgs="SELECT msg FROM posts";
 $result=mysqli_query($conn, $sql); //HELP
 $row=mysqli_fetch_assoc($result); //HELP
 
-/*
-IF (SAVED != CURRENT) {
-    SAVED = CURRENT;
-    display(SAVED);
-}
-*/
-while(1) {
-    if () {
-
-    }
-}
 ?>
 
 
@@ -47,14 +34,14 @@ while(1) {
                     while($row = mysqli_fetch_assoc($result)){
                         $sql2 = "SELECT username FROM signup WHERE uid='$row[uid]'";
                         $result2 = mysqli_query($conn, $sql2);
-                        $name =  mysqli_fetch_assoc($result2);
-                        echo "<p><b>$name[username]</b> <br /> $row[msg]</p>";
+                        $row2 =  mysqli_fetch_assoc($result2);
+                        echo "<p><b>$row2[username]</b> <br /> $row[msg]</p>";
                     }   
                     
                 ?>
             </div>
             <form method="post" action="send.php">
-                <input type=text placeholder="Type in your message..." class="form-control" width=100%><br>
+                <input name="msg" type="text" placeholder="Type in your message..." class="form-control" width=100%><br>
                 <input type="submit" value="Send" />
             </form>
             <br />

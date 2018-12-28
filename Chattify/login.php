@@ -19,8 +19,7 @@ if(!password_verify($pass, $row["password"])){
 	header("Location:error.php");
 
 } else {
-	$_SESSION["name"]=$_POST["uname"];
+	$_SESSION["uid"]=$row["uid"];
 	header("Location:home.php");
-	setcookie("uid",$row["uid"],0,'/');
 }
 ?>

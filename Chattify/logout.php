@@ -1,8 +1,6 @@
 <?php
-if (!isset($_COOKIE['uid'])) {
-    unset($_COOKIE['uid']);
-    setcookie('uid', '', time() - 3600, '/');
-}
+session_start();
+session_destroy();
 
 header("Location:index.php");
 ?>

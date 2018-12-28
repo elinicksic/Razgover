@@ -1,11 +1,12 @@
 <?php 
+session_start();
 include "dbh.php";
-if (!isset($_COOKIE["uid"])) {
+if (!isset($_SESSION["uid"])) {
     header("Location:error.php");
 }
 
 
-$uid=$_COOKIE["uid"];
+$uid=$_SESSION["uid"];
 $msg=mysqli_real_escape_string($conn, $_POST["msg"]);
 $sql="INSERT INTO posts(uid, msg) VALUES ('$uid', '$msg')";
 $result = mysqli_query($conn, $sql);
