@@ -29,8 +29,6 @@ $row=mysqli_fetch_assoc($result); //HELP
                     $sql = "SELECT * FROM posts";
                     $result = mysqli_query($conn, $sql);
 
-
-
                     while($row = mysqli_fetch_assoc($result)){
                         $sql2 = "SELECT username FROM signup WHERE uid='$row[uid]'";
                         $result2 = mysqli_query($conn, $sql2);
@@ -41,13 +39,12 @@ $row=mysqli_fetch_assoc($result); //HELP
                 ?>
             </div>
             <form method="post" action="send.php">
-                <input name="msg" type="text" placeholder="Type in your message..." class="form-control" width=100%><br>
+                <input name="msg" type="text" placeholder="Type in your message..." class="form-control" width=100% id="input"><br>
                 <input type="submit" value="Send" />
             </form>
-            <br />
+            <br>
             <form action="logout.php">
-                <input style="width: 100%;background-color: #6495ed;color: white;font-size: 20px;" type="submit" value=
-                "Logout" />
+                <input style="width: 100%;background-color: #6495ed;color: white;font-size: 20px;" type="submit" value="Logout" />
             </form>
         </div> 
     </body>
