@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Chattify - Login</title>
+        <title>Razgover - Login</title>
     </head>
     <body>
         <div id="main">

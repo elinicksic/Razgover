@@ -16,7 +16,7 @@ $row=mysqli_fetch_assoc($result); //HELP
 
 <html>
     <head>
-    	<title>Chattify - Home</title>
+    	<title>Razgover - Home</title>
     </head>
     <body>
         <div id="main">

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Chattify - Error</title>
+        <title>Razgover - Error</title>
     </head>
     <body>
         <h1>Uh Oh!</h1>

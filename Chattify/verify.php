@@ -12,9 +12,9 @@ $row=mysqli_fetch_assoc($result);
 $chrs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
 $code = '';
 for ($i = 0; $i < 5; $i++) {
-   $code = $chrs[rand(0, strlen($chrs))];
+   $code = $code . $chrs[rand(0, strlen($chrs))];
 }
-
+echo "Your code is... $code";
 $message = "
 <html>
 <head>
@@ -30,7 +30,7 @@ Thank you!
 ~Razgover Team</p>
 </body>
 ";
-mail("$row[email]", "Verify your Razgover account", "$message");
+//mail("$row[email]", "Verify your Razgover account", "$message");
 ?>
 <html>
     <head>
@@ -54,6 +54,19 @@ mail("$row[email]", "Verify your Razgover account", "$message");
         ";
 
         ?>
-    	<input type="text" placeholder="Enter the verification code" />
+        <form action="verify.php" method="post">
+    	   <input name="verify" type="text" placeholder="Enter the verification code" />
+           <input type="submit">
+        </form>
+        <?php
+            if($_POST['verify'] == $code){
+                $sql="UPDATE signup SET verified='1' WHERE uid='$_SESSION[uid]'";
+                header("Location:home.php");
+            }else{
+                echo "$_POST[verify] is INCORRECT";
+            }
+
+        ?>
+        
     </body>
 </html>
