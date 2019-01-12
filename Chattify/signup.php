@@ -15,14 +15,16 @@ if($row['uid'] != ''){
 	//username or email is taken
 	header("Location:error.php");
 } else {
-	$sql2="INSERT INTO signup(username, email, password, verified) VALUES ('$uname', '$email', '$hash', '0')";
-	$result2=$conn->query($sql2);
-
-	$sql3="SELECT uid FROM signup WHERE username='$uname'";
-	$result3=$conn->query($sql3);
-	$row3=mysqli_fetch_assoc($result3);
-
-	$_SESSION["uid"] = $row3["uid"];
-    header("Location:verify.php");
+	if(($uname = '' or $uname = str_repeat(' ', sizeof($uname))) or ($pass = '' or $pass = str_repeat(' ', sizeof($pass)))){
+		header("Location:error.php");
+	}else{
+		$sql2="INSERT INTO signup(username, email, password, verified) VALUES ('$uname', '$email', '$hash', '0')";
+		$result2=$conn->query($sql2);
+		$sql3="SELECT uid FROM signup WHERE username='$uname'";
+		$result3=$conn->query($sql3);
+		$row3=mysqli_fetch_assoc($result3);
+		$_SESSION["uid"] = $row3["uid"];
+	    header("Location:verify.php");
+	}
 }	
 ?>
