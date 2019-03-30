@@ -36,6 +36,14 @@ Thank you!
     <head>
     	<title>Razgover - Congrats!</title>
     	<link rel="stylesheet" href="stylesheet.css">
+        <script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></script>
+        <script>
+        grecaptcha.ready(function() {
+            grecaptcha.execute('reCAPTCHA_site_key', {action: 'homepage'}).then(function(token) {
+                ...
+            });
+        });
+        </script>
     </head>
     <body>
         <?php

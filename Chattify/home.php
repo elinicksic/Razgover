@@ -2,6 +2,9 @@
 <?php
 include "dbh.php";
 session_start();
+if(!isset($_SESSION['uid'])){
+    header("location:index.php");
+}
 
 ?>
 
@@ -10,6 +13,12 @@ session_start();
     <head>
     	<title>Razgover - Home</title>
         <link rel="stylesheet" href="stylesheet.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#output").load("load.php");
+            });
+        </script>
     </head>
     <body>
 
@@ -27,26 +36,14 @@ session_start();
                         $result2=mysqli_query($conn, $sql2);
                         $row2 = mysqli_fetch_assoc($result2);
                         echo "<p><b>$row2[name]</b></p>";
-                }   
-            ?>
+                    }   
+                ?>
 
             </div>
             <div id="content">
                 
                 <div id="output">
-            	    <?php
-
-                        $sql = "SELECT * FROM posts LIMIT 15";
-                        $result = mysqli_query($conn, $sql);
-
-                        while($row = mysqli_fetch_assoc($result)){
-                            $sql2 = "SELECT username FROM signup WHERE uid='$row[uid]'";
-                            $result2 = mysqli_query($conn, $sql2);
-                            $row2 =  mysqli_fetch_assoc($result2);
-                            echo "<p><b>$row2[username]</b><br>$row[msg]</p>";
-                        }   
-                        
-                    ?>
+            	    
                 </div>
                 <form method="post" action="send.php">
                     <input name="msg" type="text" placeholder="Type in your message..." class="form-control" width=100% id="input">

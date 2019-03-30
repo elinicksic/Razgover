@@ -15,7 +15,7 @@ if($row['uid'] != ''){
 	//username or email is taken
 	header("Location:error.php");
 } else {
-	if(($uname = '' or $uname = str_repeat(' ', sizeof($uname))) or ($pass = '' or $pass = str_repeat(' ', sizeof($pass)))){
+	if(trim($uname) == '' || trim($pass) == ''){
 		header("Location:error.php");
 	}else{
 		$sql2="INSERT INTO signup(username, email, password, verified) VALUES ('$uname', '$email', '$hash', '0')";
@@ -24,7 +24,7 @@ if($row['uid'] != ''){
 		$result3=$conn->query($sql3);
 		$row3=mysqli_fetch_assoc($result3);
 		$_SESSION["uid"] = $row3["uid"];
-	    header("Location:verify.php");
+	    header("Location:home.php");
 	}
 }	
 ?>
