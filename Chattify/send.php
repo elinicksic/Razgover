@@ -12,5 +12,4 @@ if(trim($msg) != '') {
     $result = mysqli_query($conn, $sql);
     //echo mysqli_errno($conn) . ": " . mysqli_error($conn);
 }
-header("Location:home.php#input");
 ?>

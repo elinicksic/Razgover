@@ -17,7 +17,30 @@ if(!isset($_SESSION['uid'])){
         <script>
             $(document).ready(function(){
                 $("#output").load("load.php");
+
+                setInterval(function(){   
+                    $("#output").load("load.php"); 
+                }, 1000);              
             });
+            
+        </script>
+        <script>
+            $(document).ready(function(){
+            $("#msgform").submit(function(){
+                var msg=$("#input").val();
+                $.ajax({
+                    url:'send.php',
+                    method:'POST',
+                    data:{
+                        msg:msg
+                    },
+                   success:function(data){
+                        $("#output").load("load.php");  
+                        $("#input").val('');         
+                   }
+                });
+            });
+        });
         </script>
     </head>
     <body>
@@ -45,10 +68,10 @@ if(!isset($_SESSION['uid'])){
                 <div id="output">
             	    
                 </div>
-                <form method="post" action="send.php">
+                <form id="msgform" action="javascript:void(0);">
                     <input name="msg" type="text" placeholder="Type in your message..." class="form-control" width=100% id="input">
                     <br>
-                    <input type="submit" value="Send" />
+                    <input type="submit" value="Send" id="submitmsg" />
                 </form>
                 <br>
                 <form action="logout.php">
