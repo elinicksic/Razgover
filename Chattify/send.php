@@ -6,7 +6,7 @@ if (!isset($_SESSION["uid"])) {
 }
 
 $uid=$_SESSION["uid"];
-$msg=mysqli_real_escape_string($conn, htmlspecialchars($_POST["msg"], ENT_QUOTES, 'UTF-8'));
+$msg=mysqli_real_escape_string($conn, $_POST["msg"]);
 if(trim($msg) != '') {
     $sql="INSERT INTO posts(uid, msg) VALUES ('$uid', '$msg')";
     $result = mysqli_query($conn, $sql);
