@@ -6,6 +6,7 @@ if(!isset($_SESSION['uid'])){
     header("location:index.php");
 }
 
+
 ?>
 
 
@@ -13,6 +14,8 @@ if(!isset($_SESSION['uid'])){
     <head>
     	<title>Razgover - Home</title>
         <link rel="stylesheet" href="stylesheet.css">
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script>
             $(document).ready(function(){
@@ -69,7 +72,7 @@ if(!isset($_SESSION['uid'])){
             	    
                 </div>
                 <form id="msgform" action="javascript:void(0);">
-                    <input name="msg" type="text" placeholder="Type in your message..." class="form-control" width=100% id="input">
+                    <input name="msg" autocomplete="off" type="text" placeholder="Type in your message..." class="form-control" width=100% id="input" maxlength="200">
                     <br>
                     <input type="submit" value="Send" id="submitmsg" />
                 </form>
