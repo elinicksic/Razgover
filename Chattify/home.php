@@ -18,11 +18,19 @@ if(!isset($_SESSION['uid'])){
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script>
+            function scrollBottom(){
+                setTimeout(function(){
+                    $('html, body').scrollTop($(document).height());
+                }, 100);
+            }
             $(document).ready(function(){
+                scrollBottom();
                 $("#output").load("load.php");
-
                 setInterval(function(){   
                     $("#output").load("load.php"); 
+                    if($('html, body').scrollTop() == $(document).height()){
+                        scrollBottom();
+                    }
                 }, 1000);              
             });
             
@@ -39,9 +47,10 @@ if(!isset($_SESSION['uid'])){
                     },
                    success:function(data){
                         $("#output").load("load.php");  
-                        $("#input").val('');         
+                        $("#input").val('');  
                    }
                 });
+                scrollBottom();
             });
         });
         </script>
@@ -71,15 +80,17 @@ if(!isset($_SESSION['uid'])){
                 <div id="output">
             	    
                 </div>
-                <form id="msgform" action="javascript:void(0);">
-                    <input name="msg" autocomplete="off" type="text" placeholder="Type in your message..." class="form-control" width=100% id="input" maxlength="200">
+                <div id="bottom">
+                    <form id="msgform" action="javascript:void(0);">
+                        <input name="msg" autocomplete="off" type="text" placeholder="Type in your message..." class="form-control" width=100% id="input" maxlength="200">
+                        <br>
+                        <input type="submit" value="Send" id="submitmsg" />
+                    </form>
                     <br>
-                    <input type="submit" value="Send" id="submitmsg" />
-                </form>
-                <br>
-                <form action="logout.php">
-                    <input style="width: 100%;background-color: #6495ed;color: white;font-size: 20px;" type="submit" value="Logout" />
-                </form>
+                    <form action="logout.php">
+                        <input style="width: 100%;background-color: #6495ed;color: white;font-size: 20px;" type="submit" value="Logout" />
+                    </form>
+                </div>
             </div> 
             <div id="topnav">
                 <?php
