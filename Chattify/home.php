@@ -5,8 +5,6 @@ session_start();
 if(!isset($_SESSION['uid'])){
     header("location:index.php");
 }
-
-
 ?>
 
 
@@ -46,11 +44,8 @@ if(!isset($_SESSION['uid'])){
         });
         </script>
     </head>
-    <body>
-
+    <body onload="$('html, body').scrollTop($(document).height());">
         <div id="main">
-            
-
             <div id="sidenav" >
                 <a href="creategroup.php">Create a new group</a>
                 <?php
