@@ -53,7 +53,7 @@ if(!isset($_SESSION['uid'])){
         });
         </script>
     </head>
-    <body onload="$('html, body').scrollTop($(document).height());">
+    <body>
         <div id="main">
             <div id="sidenav" >
                 <a href="creategroup.php">Create a new group</a>
