@@ -12,8 +12,9 @@
 	include "dbh.php";
 	$sql = "SELECT * FROM `groups`";
 	$result = mysqli_query($conn, $sql);
+    echo "<a href='creategroup.php'>Create a new group</a>";
 	while($row = mysqli_fetch_assoc($result)){
 	    $groupname =  htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');
-	    echo "<p><b>$sender</b><br>$msg</p>";
+	    echo "<p><b>$groupname</b></p>";
 	}   
 ?>
