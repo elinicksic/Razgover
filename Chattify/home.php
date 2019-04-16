@@ -94,6 +94,20 @@ if(!isset($_SESSION['uid'])){
                     $row=mysqli_fetch_assoc($result);
                     echo "<h1> Welcome $row[username] </h1>";
                 ?>
+				<!-- Dropdown (Profile, GUI, Sign Out) -->
+				<div id="dropdown">
+				    <button id="dButton">v</button>
+					<div id="dropContents" style="display:gone;">
+				        <a href="#">Profile</a>
+					    <a href="#">User Interface</a>
+					    <form action="logout.php">
+	    				    <input type="submit" value="Sign Out" />
+		    			</form>
+				    </div>
+				</div>
+				<script>
+				    
+				</script>
             </div>
         </div>
     </body>
