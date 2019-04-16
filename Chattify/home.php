@@ -12,8 +12,8 @@ if(!isset($_SESSION['uid'])){
     <head>
     	<title>Razgover - Home</title>
         <link rel="stylesheet" href="stylesheet.css">
-        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script>
             function scrollBottom(){
@@ -24,11 +24,23 @@ if(!isset($_SESSION['uid'])){
             $(document).ready(function(){
                 scrollBottom();
                 $("#output").load("load.php");
-                setInterval(function(){   
-                    $("#output").load("load.php"); 
-                    if($('html, body').scrollTop() == $(document).height()){
-                        scrollBottom();
+                $("#sidenav").load("load_groups.php");
+                setInterval(function(){ 
+                    //check if scroll is at the bottom before load 
+                    var isAtBottom;
+                    if($(window).scrollTop() + $(window).height() == $(document).height()){
+                        isAtBottom = true;
+                    } else {
+                        isAtBottom = false;
                     }
+                    //load new messages
+                    $("#output").load("load.php"); 
+                    $("#sidenav").load("load_groups.php");
+                    //if it was at the bottom before load, then make it at the bottom after
+                    if(isAtBottom){
+                        scrollBottom(); 
+                    }
+                    
                 }, 1000);              
             });
             
@@ -55,38 +67,20 @@ if(!isset($_SESSION['uid'])){
     </head>
     <body>
         <div id="main">
-            <div id="sidenav" >
-                <a href="creategroup.php">Create a new group</a>
-                <?php
-                    $sql="SELECT gid FROM usertogroup WHERE uid='$_SESSION[uid]'";
-                    $result=mysqli_query($conn, $sql);
+            <div id="sidenav" ></div>
 
-                    while($row = mysqli_fetch_assoc($result)){
-                        $sql2="SELECT name FROM groups WHERE gid='$row[gid]'";
-                        $result2=mysqli_query($conn, $sql2);
-                        $row2 = mysqli_fetch_assoc($result2);
-                        echo "<p><b>$row2[name]</b></p>";
-                    }   
-                ?>
-
+            <div id="content">                
+                <div id="output"></div>
             </div>
-            <div id="content">
-                
-                <div id="output">
-            	    
-                </div>
-                <div id="bottom">
-                    <form id="msgform" action="javascript:void(0);">
-                        <input name="msg" autocomplete="off" type="text" placeholder="Type in your message..." class="form-control" width=100% id="input" maxlength="200">
-                        <br>
-                        <input type="submit" value="Send" id="submitmsg" />
-                    </form>
-                    <br>
-                    <form action="logout.php">
-                        <input style="width: 100%;background-color: #6495ed;color: white;font-size: 20px;" type="submit" value="Logout" />
-                    </form>
-                </div>
-            </div> 
+
+            <div id="bottom">
+                <form id="msgform" action="javascript:void(0);">
+                    <input name="msg" autocomplete="off" type="text" placeholder="Type in your message..." class="form-control" id="input" maxlength="200">
+                </form>
+
+                <br>
+            </div>
+
             <div id="topnav">
                 <?php
                     $sql="SELECT * FROM signup WHERE uid='$_SESSION[uid]'";
