@@ -11,10 +11,12 @@ if(!isset($_SESSION['uid'])){
 <html>
     <head>
     	<title>Razgover - Home</title>
-        <link rel="stylesheet" href="stylesheet.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="stylesheet.css">
         <script>
             function scrollBottom(){
                 setTimeout(function(){
@@ -88,20 +90,23 @@ if(!isset($_SESSION['uid'])){
                     $row=mysqli_fetch_assoc($result);
                     echo "<h1> Welcome $row[username] </h1>";
                 ?>
-				<!-- Dropdown (Profile, GUI, Sign Out) -->
-				<div id="dropdown">
-				    <button id="dButton">v</button>
-					<div id="dropContents" style="display:gone;">
-				        <a href="#">Profile</a>
-					    <a href="#">User Interface</a>
-					    <form action="logout.php">
-	    				    <input type="submit" value="Sign Out" />
-		    			</form>
-				    </div>
-				</div>
-				<script>
-				    
-				</script>
+                <div class="dropdown" id="dropdown">
+                    <a class="dropdown-toggle" id="menu1" data-toggle="dropdown" href="#">
+                        <i class="fas fa-ellipsis-h fa-3x"></i>
+                    </a>
+                    <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="menu1">
+                        <li role="presentation">
+                            <a role="menuitem" tabindex="-1" href="#">Group Settings</a>
+                        </li>
+                        <li role="presentation">
+                            <a role="menuitem" tabindex="-1" href="#">Account Settings</a>
+                        </li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation">
+                            <a role="menuitem" tabindex="-1" href="logout.php">Sign Out</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </body>

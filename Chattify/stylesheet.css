@@ -36,3 +36,11 @@ body {
 	background-color: #f9f9f9;
 
 }
+#dropdown{
+	right: 20px;
+	top: 8px;
+	position: fixed;
+}
+.dropdown-menu {
+	float: right;
+}
