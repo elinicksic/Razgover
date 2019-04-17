@@ -25,3 +25,10 @@ body {
 	background-color: #00ffb1;
 	overflow-y: hidden;
 }
+
+/* error.php */
+#ePHP {
+	/*background-image: url("razgover.com/images/spaceBackground.jpg");*/
+	background-image: url("localhost/Chattify/Chattify/images/spaceBackground.jpg");
+	color: white;
+}
