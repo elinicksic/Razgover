@@ -4,7 +4,8 @@
 	    header("location:index.php");
 	}
 	include "dbh.php";
-	$sql = "SELECT * FROM `posts` ORDER BY date ASC";
+	$gid = mysqli_real_escape_string($conn, $_POST["gid"]);
+	$sql = "SELECT * FROM `posts` WHERE gid='$gid' ORDER BY date ASC";
 	$result = mysqli_query($conn, $sql);
 	while($row = mysqli_fetch_assoc($result)){
 	    $sql2 = "SELECT username FROM signup WHERE uid='$row[uid]'";

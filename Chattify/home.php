@@ -69,18 +69,19 @@ if(!isset($_SESSION['uid'])){
             }
             $(document).ready(function(){
                 scrollBottom();
-                $("#output").load("load.php");
+                loadMessages(currentGroup);
                 $("#sidenav").load("load_groups.php");
                 setInterval(function(){ 
                     //check if scroll is at the bottom before load 
-                    var isAtBottom;
+                    var isAtBottom = 0;
                     if($(window).scrollTop() + $(window).height() == $(document).height()){
                         isAtBottom = true;
                     } else {
                         isAtBottom = false;
                     }
                     //load new messages
-                    $("#output").load("load.php"); 
+                    //$("#output").load("load.php"); 
+                    loadMessages(currentGroup);
                     $("#sidenav").load("load_groups.php");
                     //if it was at the bottom before load, then make it at the bottom after
                     if(isAtBottom){
@@ -92,28 +93,39 @@ if(!isset($_SESSION['uid'])){
             
         </script>
         <script>
+            var currentGroup = 1;
             $(document).ready(function(){
-            $("#msgform").submit(function(){
-                var msg=$("#input").val();
-                $.ajax({
-                    url:'send.php',
-                    method:'POST',
-                    data:{
-                        msg:msg
-                    },
-                   success:function(data){
-                        $("#output").load("load.php");  
-                        $("#input").val('');  
-                   }
+                $("#msgform").submit(function(){
+                    var msg=$("#input").val();
+                    $.ajax({
+                        url:'send.php',
+                        method:'POST',
+                        data:{
+                            msg:msg,
+                            gid:currentGroup
+                        },
+                       success:function(data){
+                            loadMessages(currentGroup); 
+                            $("#input").val('');  
+                       }
+                    });
+                    scrollBottom();
                 });
-                scrollBottom();
             });
-        });
+            function changegroup(gid){
+                currentGroup = gid;
+                loadMessages(currentGroup);
+            }
+            function loadMessages(gid){
+                $.post("load.php", {gid:gid}, function(result){
+                    $("#output").html(result);
+                });
+            }
         </script>
     </head>
     <body>
         <div id="main">
-            <div id="sidenav" ></div>
+            <div id="sidenav"></div>
 
             <div id="content">                
                 <div id="output"></div>

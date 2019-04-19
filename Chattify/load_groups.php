@@ -12,9 +12,10 @@
 	include "dbh.php";
 	$sql = "SELECT * FROM `groups`";
 	$result = mysqli_query($conn, $sql);
-    echo "<a href='creategroup.php'>Create a new group</a>";
+    echo "<a href='creategroup.php'>Create a new group</a><br>";
 	while($row = mysqli_fetch_assoc($result)){
 	    $groupname =  htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');
-	    echo "<p><b>$groupname</b></p>";
+        $gid = $row['gid'];
+	    echo "<a onclick='changegroup($gid);'><b>$groupname</b></a><br>";
 	}   
 ?>
