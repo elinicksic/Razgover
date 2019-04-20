@@ -14,7 +14,6 @@ $code = '';
 for ($i = 0; $i < 5; $i++) {
    $code = $code . $chrs[rand(0, strlen($chrs))];
 }
-echo "Your code is... $code";
 $message = "
 <html>
 <head>
@@ -56,7 +55,7 @@ Thank you!
     	    <legend>
     	        <center><h1>Congrats!</h1></center>
     	    </legend>
-    	    You successfully created your account! Sadly, you need to verify your email. We sent a verification code to <b>$row[email]</b>. If you didn't recieve anything within a minute or so, then please check if you typed in your email correctly!<br>
+    	    You successfully created your account! Unfortunately, you need to verify your email. We sent a verification code to <b>$row[email]</b>. If you didn't recieve anything within a minute or so, then please check if you typed in your email correctly!<br>
     	    Be aware that if you close this page, you'll have to restart the signup.
     	</fieldset>
         ";
