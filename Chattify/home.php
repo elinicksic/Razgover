@@ -19,6 +19,54 @@ if(!isset($_SESSION['uid'])){
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
         <link rel="stylesheet" href="stylesheet.css">
         <script>
+            function newgroup(){
+                $("#messageview").hide();
+                $("#creategroupview").show();
+            }
+            var peopleingroup = "";
+            $(document).ready(function(){
+                $("#creategroupview").hide();
+                $("#addpersonform").submit(function(){
+                    var usernameinbox = $("#AddUsernameBox").val().trim();
+                    if(usernameinbox != ''){
+                        $("#peoplelist").append("<li>" + usernameinbox + "</li>");
+                        peopleingroup += usernameinbox + " ";
+                        $("#AddUsernameBox").val("");
+                    }
+                });
+                $("#submitgroup").click(function(){
+                    var groupname = $("#groupnamebox").val();
+                    $.ajax({
+                        url:'addgroup.php',
+                        method:'POST',
+                        data:{
+                            name: groupname,
+                            people: peopleingroup
+                        },
+                       success:function(data){
+                            loadMessages(currentGroup); 
+                            $("#groupnamebox").val('');
+                            $("#AddUsernameBox").val('');
+                            $("#peoplelist").empty();
+                            $("#messageview").show();
+                            $("#creategroupview").hide();
+                            $("#sidenav").load("load_groups.php");
+
+                       }
+                    });
+                });
+                $("#cancelgroupcreate").click(function(){
+                    $("#groupnamebox").val('');
+                    $("#AddUsernameBox").val('');
+                    $("#peoplelist").empty();
+                    $("#messageview").show();
+                    $("#creategroupview").hide();
+                });
+            });
+
+
+        </script>
+        <script>
             var sidenavopen = false;
             $(document).ready(function(){
                 updateSize();
@@ -110,11 +158,13 @@ if(!isset($_SESSION['uid'])){
                        }
                     });
                     scrollBottom();
+
                 });
             });
             function changegroup(gid){
                 currentGroup = gid;
                 loadMessages(currentGroup);
+                scrollBottom(); 
             }
             function loadMessages(gid){
                 $.post("load.php", {gid:gid}, function(result){
@@ -127,15 +177,31 @@ if(!isset($_SESSION['uid'])){
         <div id="main">
             <div id="sidenav"></div>
 
-            <div id="content">                
-                <div id="output"></div>
-                <div id="bottom">
-                    <form id="msgform" action="javascript:void(0);">
-                        <input name="msg" autocomplete="off" type="text" placeholder="Type in your message..." class="form-control" id="input" maxlength="200">
-                    </form>
-
-                    <br>
+            <div id="content">    
+                <div id="messageview">            
+                    <div id="output"></div>
+                    <div id="bottom">
+                        <form id="msgform" action="javascript:void(0);">
+                            <input name="msg" autocomplete="off" type="text" placeholder="Type in your message..." class="form-control" id="input" maxlength="200">
+                        </form>
+                        <br>
+                    </div>
                 </div>
+
+                <div id="creategroupview">
+                    <label><b>Name</b></label>
+                    <input id="groupnamebox" type="text" name="name" autocomplete="off" placeholder="Name your Group"><br><br>
+                    <ul id="peoplelist">
+                    </ul>
+                    <form id="addpersonform" action="javascript:void(0);">
+                        <label><b>People</b></label>
+                        <input type="text" autocomplete="off" name="people" placeholder="Username" id="AddUsernameBox"><br><br>
+                        <input class="btn" type="submit" value="Add" /><br><br>
+                    </form>
+                    <button class="btn btn-primary" id="submitgroup">Create Group</button>
+                    <button class="btn btn-danger" id="cancelgroupcreate">Cancel</button>
+                </div>
+
             </div>
 
             

@@ -7,7 +7,7 @@
     $uid = $_SESSION['uid'];
 	$sql = "SELECT * FROM usertogroup WHERE uid='$uid'";
 	$result = mysqli_query($conn, $sql);
-    echo "<a href='creategroup.php'>Create a new group</a><br>";
+    echo "<a onclick='newgroup();' id='creategroup'>Create a new group</a><br>";
 	while($row = mysqli_fetch_assoc($result)){
         $sql2 = "SELECT * FROM groups WHERE gid='$row[gid]'";
         $result2 = mysqli_query($conn, $sql2);

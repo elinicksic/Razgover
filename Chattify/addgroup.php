@@ -7,6 +7,9 @@ include "dbh.php";
 
 $uid=$_SESSION["uid"];
 $name=mysqli_real_escape_string($conn, $_POST["name"]);
+if(trim($name) == ""){
+	$name = "Unnamed Group";
+}
 $users=mysqli_real_escape_string($conn, $_POST["people"]);
 $sql="INSERT INTO groups(creator, name) VALUES ('$uid', '$name')";
 $result=mysqli_query($conn, $sql);
