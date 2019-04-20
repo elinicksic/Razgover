@@ -5,13 +5,12 @@
 	}
 	include "dbh.php";
 	$gid = mysqli_real_escape_string($conn, $_POST['gid']);
-	echo('gid: $gid');
 	$sql3 = "SELECT * FROM usertogroup WHERE uid='$_SESSION[uid]' AND gid='$gid'";
 	$result3 = mysqli_query($conn, $sql3);
-	echo(mysqli_fetch_assoc($result3));
-	if(mysqli_fetch_assoc($result3)['uid'] === $_SESSION['uid']){
-		echo("<h1>You do not have access to this group!</h1><p>Maybe sombody removed you from the group...</p>");
-	} else {
+	$row3 = mysqli_fetch_assoc($result3);
+	$uidonfile = $row3['uid'];
+	$currentuid = $_SESSION['uid'];
+	if($uidonfile == $currentuid){
 		$sql = "SELECT * FROM `posts` WHERE gid='$gid' ORDER BY date ASC";
 		$result = mysqli_query($conn, $sql);
 		while($row = mysqli_fetch_assoc($result)){
@@ -50,5 +49,7 @@
 	  			);
 		    }
 		}
+	} else {
+		echo("<h1>You do not have access to this group!</h1><p>Maybe sombody removed you from the group...</p>");
 	}   
 ?>
