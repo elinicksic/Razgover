@@ -30,7 +30,7 @@ if(!isset($_SESSION['uid'])){
                     var usernameinbox = $("#AddUsernameBox").val().trim();
                     if(usernameinbox != ''){
                         $("#peoplelist").append("<li>" + usernameinbox + "</li>");
-                        peopleingroup += usernameinbox + " ";
+                        peopleingroup += usernameinbox + ",";
                         $("#AddUsernameBox").val("");
                     }
                 });
