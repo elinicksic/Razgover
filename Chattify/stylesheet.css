@@ -12,11 +12,10 @@ body {
  	width: 200px;
 	position: fixed;
 	z-index: 0;
-	top: 0;
+	margin-top: 0;
 	left: 0;
 	background-color: #6fe4c1;
 	overflow-x: hidden;
-	padding-top: 70px;
 }
 #topnav{
 	height: 60px;
@@ -56,4 +55,7 @@ body {
 }
 #content{
 	margin-top: 60px;
+}
+.group-listing{
+	cursor: pointer;
 }
