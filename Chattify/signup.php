@@ -13,10 +13,10 @@ $row=mysqli_fetch_assoc($result);
 
 if($row['uid'] != ''){
 	//username or email is taken
-	header("Location:error.php");
+	header("Location:uerror.php");
 } else {
 	if(trim($uname) == '' || trim($pass) == ''){
-		header("Location:error.php");
+		header("Location:error1.php");
 	}else{
 		$sql2="INSERT INTO signup(username, email, password, verified) VALUES ('$uname', '$email', '$hash', '0')";
 		$result2=$conn->query($sql2);
