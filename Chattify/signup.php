@@ -24,7 +24,7 @@ if($row['uid'] != ''){
 		$result3=$conn->query($sql3);
 		$row3=mysqli_fetch_assoc($result3);
 		$_SESSION["uid"] = $row3["uid"];
-	    header("Location:home.php");
+	    header("Location:verify.php");
 	}
 }	
 ?>

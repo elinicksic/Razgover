@@ -5,13 +5,16 @@ if(!isset($_SESSION["uid"])){
     header("Location:error.php");
 }
 include "dbh.php";
+require '../PHPMailer-6.0.7/src/Exception.php';
+require '../PHPMailer-6.0.7/src/PHPMailer.php';
+require '../PHPMailer-6.0.7/src/SMTP.php';
 
 $sql="SELECT * FROM signup WHERE uid='$_SESSION[uid]'";
 $result=mysqli_query($conn, $sql);
 $row=mysqli_fetch_assoc($result);
 $chrs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
 $code = '';
-for ($i = 0; $i < 5; $i++) {
+for ($i = 0; $i < 30; $i++) {
    $code = $code . $chrs[rand(0, strlen($chrs))];
 }
 $message = "
@@ -29,7 +32,7 @@ Thank you!
 ~Razgover Team</p>
 </body>
 ";
-//mail("$row[email]", "Verify your Razgover account", "$message");
+mail("$row[email]", "Verify your Razgover account", "$message");
 ?>
 <html>
     <head>
