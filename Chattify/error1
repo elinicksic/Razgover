@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Razgover - Error</title>
+    </head>
+    <body>
+        <h1>Uh Oh!</h1>
+        <h2>An error has occured!</h2>
+
+        <p>There seems to be a server problem.</p>
+        <ul>
+        	<li>This may be a tempory error. If so, it logging in to razgover should work in a little bit.</li>
+        	<li>If this page has appeared mutiple times, it may be a code error. Please report a issue on <a href="https://github.com/Dolphinbob/Razgover/issues">github</a>.</li>
+        </ul>
+        <br>
+        Go back <a href="index.php">here</a>
+    </body>
+</html>
