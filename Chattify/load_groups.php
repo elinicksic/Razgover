@@ -17,4 +17,3 @@
 	    echo "<a onclick='changegroup($gid);' class='list-group-item list-group-item-info group-listing'><b>$groupname</b></a>";
 	}   
     echo "</div>";
-?>
