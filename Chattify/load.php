@@ -52,3 +52,4 @@
 	} else {
 		echo("<h1>You do not have access to this group!</h1><p>Maybe sombody removed you from the group...</p>");
 	}   
+?>

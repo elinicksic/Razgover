@@ -27,3 +27,4 @@ if($row['uid'] != ''){
 	    header("Location:home.php");
 	}
 }	
+?>

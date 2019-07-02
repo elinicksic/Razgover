@@ -22,3 +22,4 @@ if($uidonfile == $currentuid){
 	    echo(mysqli_error($conn));
 	}
 }
+?>
