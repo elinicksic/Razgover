@@ -22,4 +22,3 @@ if(!password_verify($pass, $row["password"])){
 	$_SESSION["uid"]=$row["uid"];
 	header("Location:home.php");
 }
-?>
