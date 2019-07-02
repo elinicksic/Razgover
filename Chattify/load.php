@@ -37,7 +37,7 @@
 		    	echo("
 			    	<div class='media'>
 		    			<div class='media-left'>
-		      			<img src='https://t4.ftcdn.net/jpg/02/15/84/43/240_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg' class='media-object' style='width:60px'>
+		      			<img src='img_avatar1.png' class='media-object' style='width:60px'>
 		    		</div>
 		    		<div class='media-body'>
 		      			<h4 class='media-heading'>$sender</h4>
