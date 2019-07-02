@@ -28,11 +28,25 @@ if(!isset($_SESSION['uid'])){
                 $("#creategroupview").hide();
                 $("#addpersonform").submit(function(){
                     var usernameinbox = $("#AddUsernameBox").val().trim();
-                    if(usernameinbox != ''){
-                        $("#peoplelist").append("<li>" + usernameinbox + "</li>");
-                        peopleingroup += usernameinbox + ",";
-                        $("#AddUsernameBox").val("");
-                    }
+                    $.ajax({
+                        method: "POST",
+                        url: "Check-Username.php",
+                        data: {uname: usernameinbox},
+                        success: function(data) {
+                            if(data == "0"){
+                                //username was no found
+                                alert("The username you entered was not found you fool!");
+                            } else {
+                                if(usernameinbox != ''){
+                                    $("#peoplelist").append("<li>" + usernameinbox + "</li>");
+                                    peopleingroup += usernameinbox + ",";
+                                    $("#AddUsernameBox").val("");
+                                }
+                            }
+                        }
+                    });
+
+                    
                 });
                 $("#submitgroup").click(function(){
                     var groupname = $("#groupnamebox").val();

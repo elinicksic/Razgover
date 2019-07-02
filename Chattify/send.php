@@ -19,6 +19,7 @@ if($uidonfile == $currentuid){
 	    $sql="INSERT INTO posts(uid, msg, gid) VALUES ('$uid', '$msg', '$gid')";
 	    $result = mysqli_query($conn, $sql);
 	    //echo mysqli_errno($conn) . ": " . mysqli_error($conn);
+	    echo(mysqli_error($conn));
 	}
 }
 ?>
