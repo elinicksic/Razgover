@@ -23,13 +23,18 @@ if(!isset($_SESSION['uid'])){
         <link rel="stylesheet" href="stylesheet.css">
 
         <script>
+            //start the sidenav closed
             var sidenavopen = false;
             $(document).ready(function(){
+                //update the size of the sidenav
                 updateSize();
+                //update size if the window is resized
                 $(window).resize(function(){
                     updateSize();
                 });
+                //On click to the sidenav open and close button
                 $("#togglesidenav").click(function(){
+                    //swap the state of the sidenav
                     if(sidenavopen){
                         closeNav();
                         sidenavopen = false;
@@ -68,10 +73,14 @@ if(!isset($_SESSION['uid'])){
             
         </script>
         <script>
+            //set the default group to 1
             var currentGroup = 1;
             $(document).ready(function(){
+                //when sending a new message
                 $("#msgform").submit(function(){
+                    //store the msg in a var
                     var msg = $("#input").val();
+                    //send the message and if it succeeds clear the message box and reload the messages
                     sendMessage(msg, currentGroup, function(){
                         loadMessages(currentGroup);
                         $("#input").val('');
