@@ -35,3 +35,18 @@ function changegroup(gid){
     loadMessages(currentGroup);
     scrollBottom();
 }
+
+function changeView(view){
+    switch(view) {
+        case 0:
+            //messages view
+            $("#messageview").show();
+            $("#creategroupview").hide();
+            break;
+        case 1:
+            //create new group view
+            $("#messageview").hide();
+            $("#creategroupview").show();
+            break;
+    }
+}

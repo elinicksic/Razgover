@@ -17,57 +17,11 @@ if(!isset($_SESSION['uid'])){
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="JavaScript/SendReceive.js"></script>
         <script type="text/javascript" src="JavaScript/Util.js"></script>
+        <script type="text/javascript" src="JavaScript/CreateGroup.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
         <link rel="stylesheet" href="stylesheet.css">
-        <script>
-            function newgroup(){
-                $("#messageview").hide();
-                $("#creategroupview").show();
-            }
-            var peopleingroup = "";
-            $(document).ready(function(){
-                $("#creategroupview").hide();
-                $("#addpersonform").submit(function(){
-                    var usernameinbox = $("#AddUsernameBox").val().trim();
-                    if(usernameinbox != ''){
-                        $("#peoplelist").append("<li>" + usernameinbox + "</li>");
-                        peopleingroup += usernameinbox + ",";
-                        $("#AddUsernameBox").val("");
-                    }
-                });
-                $("#submitgroup").click(function(){
-                    var groupname = $("#groupnamebox").val();
-                    $.ajax({
-                        url:'addgroup.php',
-                        method:'POST',
-                        data:{
-                            name: groupname,
-                            people: peopleingroup
-                        },
-                       success:function(data){
-                            loadMessages(currentGroup); 
-                            $("#groupnamebox").val('');
-                            $("#AddUsernameBox").val('');
-                            $("#peoplelist").empty();
-                            $("#messageview").show();
-                            $("#creategroupview").hide();
-                            $("#sidenav").load("load_groups.php");
 
-                       }
-                    });
-                });
-                $("#cancelgroupcreate").click(function(){
-                    $("#groupnamebox").val('');
-                    $("#AddUsernameBox").val('');
-                    $("#peoplelist").empty();
-                    $("#messageview").show();
-                    $("#creategroupview").hide();
-                });
-            });
-
-
-        </script>
         <script>
             var sidenavopen = false;
             $(document).ready(function(){
@@ -85,10 +39,8 @@ if(!isset($_SESSION['uid'])){
                     }
                 });
             });
-
-
-            
         </script>
+
         <script>
             $(document).ready(function(){
                 scrollBottom();
