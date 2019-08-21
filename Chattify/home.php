@@ -15,65 +15,26 @@ if(!isset($_SESSION['uid'])){
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="JavaScript/SendReceive.js"></script>
+        <script type="text/javascript" src="JavaScript/Util.js"></script>
+        <script type="text/javascript" src="JavaScript/CreateGroup.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
         <link rel="stylesheet" href="stylesheet.css">
+
         <script>
-            function newgroup(){
-                $("#messageview").hide();
-                $("#creategroupview").show();
-            }
-            var peopleingroup = "";
-            $(document).ready(function(){
-                $("#creategroupview").hide();
-                $("#addpersonform").submit(function(){
-                    var usernameinbox = $("#AddUsernameBox").val().trim();
-                    if(usernameinbox != ''){
-                        $("#peoplelist").append("<li>" + usernameinbox + "</li>");
-                        peopleingroup += usernameinbox + ",";
-                        $("#AddUsernameBox").val("");
-                    }
-                });
-                $("#submitgroup").click(function(){
-                    var groupname = $("#groupnamebox").val();
-                    $.ajax({
-                        url:'addgroup.php',
-                        method:'POST',
-                        data:{
-                            name: groupname,
-                            people: peopleingroup
-                        },
-                       success:function(data){
-                            loadMessages(currentGroup); 
-                            $("#groupnamebox").val('');
-                            $("#AddUsernameBox").val('');
-                            $("#peoplelist").empty();
-                            $("#messageview").show();
-                            $("#creategroupview").hide();
-                            $("#sidenav").load("load_groups.php");
-
-                       }
-                    });
-                });
-                $("#cancelgroupcreate").click(function(){
-                    $("#groupnamebox").val('');
-                    $("#AddUsernameBox").val('');
-                    $("#peoplelist").empty();
-                    $("#messageview").show();
-                    $("#creategroupview").hide();
-                });
-            });
-
-
-        </script>
-        <script>
+            //start the sidenav closed
             var sidenavopen = false;
             $(document).ready(function(){
+                //update the size of the sidenav
                 updateSize();
+                //update size if the window is resized
                 $(window).resize(function(){
                     updateSize();
                 });
+                //On click to the sidenav open and close button
                 $("#togglesidenav").click(function(){
+                    //swap the state of the sidenav
                     if(sidenavopen){
                         closeNav();
                         sidenavopen = false;
@@ -83,38 +44,9 @@ if(!isset($_SESSION['uid'])){
                     }
                 });
             });
-            function updateSize(){
-                if($(window).width() < 800){
-                    $("#welcomesign").css("margin-left", "30px");
-                    if(sidenavopen == false){
-                        closeNav();
-                    }
-                    $("#togglesidenav").show();
-                } else {
-                    $("#welcomesign").css("margin-left", "5px");
-                    openNav();
-                    $("#togglesidenav").hide();
-                }
-            }
-            function openNav() {
-                $("#sidenav").width(200);
-                $("#main").css("margin-left", "210px");
-                $("#sidenavsymbol").removeClass('fa-angle-right').addClass('fa-angle-left');
-            }
- 
-            function closeNav() {
-                $("#sidenav").width(0);
-                $("#main").css("margin-left", "10px");
-                $("#sidenavsymbol").removeClass('fa-angle-left').addClass('fa-angle-right');
-            }
-            
         </script>
+
         <script>
-            function scrollBottom(){
-                setTimeout(function(){
-                    $('html, body').scrollTop($(document).height());
-                }, 100);
-            }
             $(document).ready(function(){
                 scrollBottom();
                 loadMessages(currentGroup);
@@ -141,36 +73,23 @@ if(!isset($_SESSION['uid'])){
             
         </script>
         <script>
+            //set the default group to 1
             var currentGroup = 1;
             $(document).ready(function(){
+                //when sending a new message
                 $("#msgform").submit(function(){
-                    var msg=$("#input").val();
-                    $.ajax({
-                        url:'send.php',
-                        method:'POST',
-                        data:{
-                            msg:msg,
-                            gid:currentGroup
-                        },
-                       success:function(data){
-                            loadMessages(currentGroup); 
-                            $("#input").val('');  
-                       }
+                    //store the msg in a var
+                    var msg = $("#input").val();
+                    //send the message and if it succeeds clear the message box and reload the messages
+                    sendMessage(msg, currentGroup, function(){
+                        loadMessages(currentGroup);
+                        $("#input").val('');
                     });
-                    scrollBottom();
 
+                    scrollBottom();
                 });
             });
-            function changegroup(gid){
-                currentGroup = gid;
-                loadMessages(currentGroup);
-                scrollBottom(); 
-            }
-            function loadMessages(gid){
-                $.post("load.php", {gid:gid}, function(result){
-                    $("#output").html(result);
-                });
-            }
+
         </script>
     </head>
     <body>
