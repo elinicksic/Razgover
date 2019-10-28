@@ -12,11 +12,11 @@ $result=mysqli_query($conn, $sql);
 $row=mysqli_fetch_assoc($result);
 
 if(($uname = '' or $uname = str_repeat(' ', sizeof($uname))) or ($pass = '' or $pass = str_repeat(' ', sizeof($pass)))) {
-	header("Location:error.php");
+	header("Location:uerror.php");
 }
 
 if(!password_verify($pass, $row["password"])){
-	header("Location:error.php");
+	header("Location:uerror.php");
 
 } else {
 	$_SESSION["uid"]=$row["uid"];
