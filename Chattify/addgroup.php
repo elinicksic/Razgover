@@ -12,7 +12,7 @@ if(trim($name) == ""){
 }
 $users=mysqli_real_escape_string($conn, $_POST['people']);
 $usersarray = explode(",", $users);
-$sql="INSERT INTO groups(creator, nam1e) VALUES ('$uid', '$name')";
+$sql="INSERT INTO groups(creator, name) VALUES ('$uid', '$name')";
 $result = mysqli_query($conn, $sql);
 $affected = mysqli_affected_rows($conn);
 if($affected > 0) {
