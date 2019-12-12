@@ -16,7 +16,7 @@ if($row['uid'] != ''){
 	header("Location:uerror.php");
 } else {
 	if(trim($uname) == '' || trim($pass) == ''){
-		header("Location:error1.php");
+		header("Location:500.php");
 	}else{
 		$sql2="INSERT INTO signup(username, email, password, verified) VALUES ('$uname', '$email', '$hash', '0')";
 		$result2=$conn->query($sql2);
