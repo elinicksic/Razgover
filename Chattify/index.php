@@ -9,7 +9,7 @@
 
 	?>
     <head>
-        <title>Razgover - Login</title>
+        <title>Login to Razgover</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -41,7 +41,7 @@
 		            <!--<label><b>Username</b></label>
 		            <input type="text" name="uname" placeholder="Username"><br><br>
 		            <label><b>Password</b></label>
-            		<input type="password" name="pass" placeholder="Password"><br><br>
+            		<input type="password" name="pass" placeholder="SuperStrongPassword123"><br><br>
             		<label><b>Email</b></label>
             		<input type="email" name="email" placeholder="example@domain.com"><br><br>-->
             		<div class="input-group">
