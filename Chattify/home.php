@@ -139,10 +139,10 @@ if(!isset($_SESSION['uid'])){
                     </a>
                     <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="menu1">
                         <li role="presentation" class="disabled">
-                            <a role="menuitem" tabindex="-1" href="">Group Settings</a>
+                            <a role="menuitem" tabindex="-1" href="501.php">Group Settings</a>
                         </li>
                         <li role="presentation" class="disabled">
-                            <a role="menuitem" tabindex="-1" href="">Account Settings</a>
+                            <a role="menuitem" tabindex="-1" href="501.php">Account Settings</a>
                         </li>
                         <li role="presentation" class="divider"></li>
                         <li role="presentation">
