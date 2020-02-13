@@ -1,7 +1,7 @@
 <?php
     session_start();
     if (!isset($_SESSION["uid"])) {
-        header("Location:index.php");
+        header("Location:login.php");
     }
     include "include/dbh.php";
     $uid = $_SESSION['uid'];

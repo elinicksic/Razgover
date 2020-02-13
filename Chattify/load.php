@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	if(!isset($_SESSION['uid'])){
-	    header("location:index.php");
+	    header("location:login.php");
 	}
 	include "include/dbh.php";
 	$gid = mysqli_real_escape_string($conn, $_POST['gid']);
