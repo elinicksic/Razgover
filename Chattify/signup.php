@@ -1,4 +1,10 @@
 <DOCTYPE html>
+    <?php
+    session_start();
+    if(isset($_SESSION['uid'])){
+        header("location:home.php");
+    }
+    ?>
     <html>
         <title>Razgover - Signup</title>
         <meta charset="utf-8">
@@ -33,5 +39,6 @@
         <br>
         <button class="btn btn-primary" type="submit"><b>Sign Up</b></button>
     </form>
+    <p>Already have an account? Click <a href="login.php">here</a> to login</p>
     </body>
     </html>

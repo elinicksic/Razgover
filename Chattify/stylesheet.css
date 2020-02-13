@@ -57,3 +57,13 @@ body {
 #content{
 	margin-top: 60px;
 }
+#topnavLogin{
+	right: 100px;
+	top: 12px;
+	position: fixed;
+}
+#topnavSignup{
+	right: 20px;
+	top: 12px;
+	position: fixed;
+}
