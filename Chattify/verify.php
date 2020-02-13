@@ -4,7 +4,7 @@ session_start();
 if(!isset($_SESSION["uid"])){
     header("Location:error.php");
 }
-include "dbh.php";
+include "include/dbh.php";
 
 $sql="SELECT * FROM signup WHERE uid='$_SESSION[uid]'";
 $result=mysqli_query($conn, $sql);

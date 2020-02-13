@@ -3,7 +3,7 @@
 	if(!isset($_SESSION['uid'])){
 	    header("location:index.php");
 	}
-	include "dbh.php";
+	include "include/dbh.php";
 	$gid = mysqli_real_escape_string($conn, $_POST['gid']);
 	$sql3 = "SELECT * FROM usertogroup WHERE uid='$_SESSION[uid]' AND gid='$gid'";
 	$result3 = mysqli_query($conn, $sql3);
