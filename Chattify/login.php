@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "dbh.php";
+include "include/dbh.php";
 
 $uname=mysqli_real_escape_string($conn, $_POST["uname"]);
 $pass=mysqli_real_escape_string($conn, $_POST["pass"]);

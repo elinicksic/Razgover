@@ -23,7 +23,7 @@ $(document).ready(function(){
         var groupname = $("#groupnamebox").val();
         //send the group to the server with ajax
         $.ajax({
-            url:'addgroup.php',
+            url:'include/addgroup.php',
             method:'POST',
             data:{
                 name: groupname,

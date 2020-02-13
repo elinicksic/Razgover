@@ -1,30 +1,37 @@
-<?php
-session_start();
-include "dbh.php";
+<DOCTYPE html>
+    <html>
+        <title>Razgover - Signup</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-$uname=mysqli_real_escape_string($conn, $_POST["uname"]);
-$email=mysqli_real_escape_string($conn, $_POST["email"]);
-$pass=mysqli_real_escape_string($conn, $_POST["pass"]);
-$hash = password_hash($pass, PASSWORD_BCRYPT);
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
-$sql="SELECT * FROM signup WHERE email='$email' OR username='$uname'";
-$result=$conn->query($sql);
-$row=mysqli_fetch_assoc($result);
-
-if($row['uid'] != ''){
-	//username or email is taken
-	header("Location:uerror.php");
-} else {
-	if(trim($uname) == '' || trim($pass) == ''){
-		header("Location:error1.php");
-	}else{
-		$sql2="INSERT INTO signup(username, email, password, verified) VALUES ('$uname', '$email', '$hash', '0')";
-		$result2=$conn->query($sql2);
-		$sql3="SELECT uid FROM signup WHERE username='$uname'";
-		$result3=$conn->query($sql3);
-		$row3=mysqli_fetch_assoc($result3);
-		$_SESSION["uid"] = $row3["uid"];
-	    header("Location:home.php");
-	}
-}	
-?>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <head>
+    </head>
+    <body>
+    <form action="include/signup.inc.php" method = "post">
+        <h2>Sign Up</h2>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+            <input id="email" type="email" class="form-control" name="email" placeholder="Email">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input id="username" type="text" class="form-control" name="uname" placeholder="Username">
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+            <input id="password" type="password" class="form-control" name="pass" placeholder="Password">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+            <input id="password" type="password" class="form-control" name="pass-conf" placeholder="Retype Password">
+        </div>
+        <br>
+        <button class="btn btn-primary" type="submit"><b>Sign Up</b></button>
+    </form>
+    </body>
+    </html>

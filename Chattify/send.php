@@ -3,7 +3,7 @@ session_start();
 if (!isset($_SESSION["uid"])) {
     header("Location:index.php");
 }
-include "dbh.php";
+include "include/dbh.php";
 
 
 $uid=$_SESSION["uid"];
