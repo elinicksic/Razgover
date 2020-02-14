@@ -11,10 +11,15 @@ $sql="SELECT * FROM signup WHERE username='$uname'";
 $result=mysqli_query($conn, $sql);
 $row=mysqli_fetch_assoc($result);
 
-if(!password_verify($pass, $row["password"])){
-	echo("0");
-} else {
-	$_SESSION["uid"]=$row["uid"];
-	echo("1");
+if(($uname = '' or $uname = str_repeat(' ', sizeof($uname))) or ($pass = '' or $pass = str_repeat(' ', sizeof($pass)))) {
+	header("Location:../uerror.php");
 }
 
+if(!password_verify($pass, $row["password"])){
+	header("Location:../uerror.php");
+
+} else {
+	$_SESSION["uid"]=$row["uid"];
+	header("Location:../home.php");
+}
+?>
