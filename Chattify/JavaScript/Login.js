@@ -1,7 +1,5 @@
 function tryLogin(uname, pass)
 {
-    console.log(uname);
-    console.log(pass);
     $.ajax({
         url:'http://localhost/Chattify/Chattify/include/login.inc.php',
         method:'POST',
