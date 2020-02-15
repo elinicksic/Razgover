@@ -67,3 +67,6 @@ body {
 	top: 12px;
 	position: fixed;
 }
+.sideNavItem{
+	cursor: pointer;
+}

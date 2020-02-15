@@ -31,6 +31,7 @@ function updateSize(){
 }
 
 function changegroup(gid){
+    changeView(0);
     currentGroup = gid;
     loadMessages(currentGroup);
     scrollBottom();
