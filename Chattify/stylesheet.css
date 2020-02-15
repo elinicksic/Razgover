@@ -70,3 +70,6 @@ body {
 .sideNavItem{
 	cursor: pointer;
 }
+#info{
+	margin-top: 70px;
+}
