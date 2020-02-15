@@ -12,9 +12,8 @@ $result=mysqli_query($conn, $sql);
 $row=mysqli_fetch_assoc($result);
 
 if(!password_verify($pass, $row["password"])){
-	echo("0");
+	echo("Username or password is incorrect!");
 } else {
 	$_SESSION["uid"]=$row["uid"];
-	echo("1");
 }
 
