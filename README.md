@@ -1,3 +1,5 @@
+# This is an Amazing Chat app for Kids
+
 # Razgover
 ## About
 Razgover is a chat website.
